@@ -1,0 +1,64 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: main
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/g-weatherill/nonergodicGMM:
+      branch: main
+      repo: https://github.com/g-weatherill/nonergodicGMM
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/g-weatherill/nonergodicGMM git:
+        commands:
+        - /usr/bin/env sh .sqa/script.flaky-tangerine-moth.sh
+        container: qc.acc_crappy-buff-opossum
+  QC.Doc:
+    repos:
+      github.com/g-weatherill/nonergodicGMM find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.nippy-lavender-bee.sh
+        container: qc.doc_boozy-lemon-binturong
+      github.com/g-weatherill/nonergodicGMM git:
+        commands:
+        - /usr/bin/env sh .sqa/script.beady-maroon-terrier.sh
+        container: qc.doc_craggy-mustard-toad
+      github.com/g-weatherill/nonergodicGMM markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.hasty-olive-terrier.sh
+        container: qc.doc_chewy-coral-quetzal
+  QC.Lic:
+    repos:
+      github.com/g-weatherill/nonergodicGMM licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.shaky-magenta-beetle.sh
+        container: qc.lic_wheezy-cornflower-spitz
+  QC.Sec:
+    repos:
+      github.com/g-weatherill/nonergodicGMM bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.chummy-sapphire-fish.sh
+        container: qc.sec_nerdy-green-binturong
+  QC.Sty:
+    repos:
+      github.com/g-weatherill/nonergodicGMM flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.messy-sepia-cattle.sh
+        container: qc.sty_stuffy-tomato-termite
+  QC.Uni:
+    repos:
+      github.com/g-weatherill/nonergodicGMM pytest:
+        commands:
+        - /usr/bin/env sh .sqa/script.hazy-ivory-capybara.sh
+        container: qc.uni_hilly-russet-shrimp
+  QC.Ver:
+    repos:
+      github.com/g-weatherill/nonergodicGMM get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.scanty-cyan-earwig.sh
+        container: qc.ver_bluesy-beige-gerbil
+timeout: 5400
